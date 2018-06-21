@@ -29,6 +29,3 @@ ENV BUNDLE_PATH /box
 
 # Copiando todos os arquivos
 COPY . .
-
-# Instalando as gems
-RUN bundle install
