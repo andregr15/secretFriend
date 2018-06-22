@@ -78,10 +78,17 @@ RSpec.describe CampaignsController, type: :controller do
     end
 
     context "User is the Campaign Owner" do
-      it "returns http success" do
+      before(:each) do
         campaign = create(:campaign, user: @current_user)
         delete :destroy, params: { id: campaign.id }
+      end
+
+      it "returns http success" do
         expect(response).to have_http_status(:success)
+      end
+
+      it "database shouldn't have campaign anymore" do
+        expect(Campaign.last).to be_nil
       end
     end
 
