@@ -19,11 +19,11 @@ describe RaffleService do
       end
 
       it "results is a hash" do
-        expect(@results.class).to eq(Hash)
+        expect(@result.class).to eq(Hash)
       end
 
       it "all members are in results as a member" do
-        result_members = @results.map { |r| r.first }
+        result_members = @result.map { |r| r.first }
         expect(result_members.sort).to eq(@campaign.members.sort)
       end
 
@@ -51,7 +51,7 @@ describe RaffleService do
         #expect(user.last).not_to eql(friend.first)
 
         @result.each do |r|
-          expect(r.first).not_to eq(@result[r.last].last)
+          expect(r.first).not_to eq(@result[r.last])
         end
       end
     end
