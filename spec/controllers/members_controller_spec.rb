@@ -6,9 +6,9 @@ RSpec.describe MembersController, type: :controller do
   before(:each) do
     @request.env['HTTP_ACCEPT'] = 'application/json'
 
-    @request.env['devise.mapping'] = Devise.mapping[:user]
+    @request.env['devise.mapping'] = Devise.mappings[:user]
     @current_user = FactoryBot.create(:user)
-    @campaign = create(:campaign, user: @current_user)
+    @campaign = create(:campaign, user: @current_user, status: :pending)
     sign_in @current_user
   end
 
@@ -51,7 +51,7 @@ RSpec.describe MembersController, type: :controller do
         put :update, params: { id: member.id, member: @new_member }
       end
 
-      it "returns http succes" do
+      it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
@@ -91,7 +91,7 @@ RSpec.describe MembersController, type: :controller do
     context "User isn't the owner of the campaign" do
       it "returns http forbidden" do
         member = create(:member)
-        delete :detroy, params: { id: member.id }
+        delete :destroy, params: { id: member.id }
         expect(response).to have_http_status(:forbidden)
       end
     end

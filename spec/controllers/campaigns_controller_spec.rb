@@ -173,7 +173,7 @@ RSpec.describe CampaignsController, type: :controller do
     context "User isn't the Campaign Owner" do
       before(:each) do
         @campaign = create(:campaign)
-        post :rafle, params: { id: @campaign.id }
+        post :raffle, params: { id: @campaign.id }
       end
 
       it "returns  http forbidden" do
