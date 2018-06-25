@@ -11,7 +11,7 @@ RSpec.describe CampaignMailer, type: :mailer do
 
 
     it "renders the headers" do
-      expect(@mail.subject).to eq("Nosso Amigo Secreto: #{campaign.title}")
+      expect(@mail.subject).to eq("Nosso Amigo Secreto: #{@campaign.title}")
       expect(@mail.to).to eq([@member.email])
     end
 
@@ -24,7 +24,7 @@ RSpec.describe CampaignMailer, type: :mailer do
     end
 
     it "body have member link to set open" do
-      expect(@mail.body.encoded).to match("/members/#{member.token}/opened")
+      expect(@mail.body.encoded).to match("/members/#{@member.token}/opened")
     end
   end
 
