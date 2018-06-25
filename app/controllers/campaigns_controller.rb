@@ -12,7 +12,7 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    @campaign = Campaign.new(campaign_params)
+    @campaign = Campaign.new(user: current_user, title: 'Nova Campanha', description: 'Descreva sua campanha...')
 
     respond_to do |format|
       if @campaign.save
@@ -25,7 +25,7 @@ class CampaignsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @compaign.update(campaign_params)
+      if @campaign.update(campaign_params)
         format.json { render json: true }
       else
         format.json { render json: @campaign.errors, status: :unprocessable_entity }
@@ -57,10 +57,10 @@ class CampaignsController < ApplicationController
   private
 
   def set_campaign
-    @campaign = Camapign.find(params[:id])
+    @campaign = Campaign.find(params[:id])
   end
 
-  def compaign_params
+  def campaign_params
     params.require(:campaign).permit(:title, :description, :event_date, :event_hour, :location).merge(user: current_user)
   end
 
@@ -72,5 +72,6 @@ class CampaignsController < ApplicationController
         end
       end
     end
-  end
+    
 end
+

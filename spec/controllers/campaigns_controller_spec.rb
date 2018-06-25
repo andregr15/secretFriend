@@ -4,8 +4,8 @@ RSpec.describe CampaignsController, type: :controller do
   include Devise::Test::ControllerHelpers
 
   before(:each) do
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    @current_user = FactoryBot.create(:user)
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @current_user = create(:user)
     sign_in @current_user
   end
 
@@ -19,6 +19,7 @@ RSpec.describe CampaignsController, type: :controller do
   describe "GET #show" do
     
     context "campaign exists" do
+      
       context "User is the owner of the campaign" do
         it "Returns success" do
           campaign = create(:campaign, user: @current_user)
@@ -41,7 +42,7 @@ RSpec.describe CampaignsController, type: :controller do
         it "Redirects to root" do
           get :show, params: { id: 0 }
 
-          exepct(response).to redirect_to('/')
+          expect(response).to redirect_to('/')
         end
       end
     end
@@ -61,8 +62,8 @@ RSpec.describe CampaignsController, type: :controller do
 
     it "Create campaign with right attributes" do
       expect(Campaign.last.user).to eql(@current_user)
-      expect(Campaign.last.title). eql(@campaign_attributes[:title])
-      expect(Campaign.last.description).to eql(@campaign_attributes[:description])
+      expect(Campaign.last.title).to eql("Nova Campanha")
+      expect(Campaign.last.description).to eql("Descreva sua campanha...")
       expect(Campaign.last.status).to eql('pending')
     end
 
@@ -96,7 +97,7 @@ RSpec.describe CampaignsController, type: :controller do
       it "returns http forbidden" do
         campaign = create(:campaign)
         delete :destroy, params: { id: campaign.id }
-        exepct(response).to have_http_status(:forbidden)
+        expect(response).to have_http_status(:forbidden)
       end
     end
 

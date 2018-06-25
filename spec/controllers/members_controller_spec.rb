@@ -8,7 +8,7 @@ RSpec.describe MembersController, type: :controller do
 
     @request.env['devise.mapping'] = Devise.mappings[:user]
     @current_user = FactoryBot.create(:user)
-    @campaign = create(:campaign, user: @current_user, status: :pending)
+    @campaign = create(:campaign, user: @current_user)
     sign_in @current_user
   end
 
