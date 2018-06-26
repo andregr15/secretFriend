@@ -83,9 +83,9 @@ RSpec.describe MembersController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      #it "database shouldn't have member anymore" do
-      #  expect(Member.find(@member.id)).to raise_exception
-      #end
+      it "database shouldn't have member anymore" do
+        expect{Member.find(@member.id)}.to raise_exception(ActiveRecord::RecordNotFound)
+      end
     end
 
     context "User isn't the owner of the campaign" do
