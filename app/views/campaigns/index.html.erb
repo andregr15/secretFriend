@@ -27,13 +27,13 @@
               </div>
               
               <div class="row status">
-                <div class="col s6 m6 l4 visibility">
+                <div class="col s6 m6 l4 visibility valign-wrapper">
                   <i class="material-icons visibility-icon">visibility</i>
-                  <span class="visibility-text">Vistos <%= open_number(c) %></span>
+                  <span class="visibility-text"> &nbsp; Vistos <%= open_number(c) %></span>
                 </div>
                 <div class="col s2 m2 offset-s4 l2 offset-l6">
-                  <span class="new badge <%= (c.status == 'pending' ? 'orange' : '' %>">
-                    <%= (c.status == "pending") ? 'Pendente' : 'Sorteado' %>
+                  <span class="new badge <%= c.status == 'pending' ? 'orange' : '' %>">
+                    <%= c.status == "pending" ? 'Pendente' : 'Sorteado' %>
                   </span>
                 </div>
               </div>
@@ -43,7 +43,7 @@
             <div class="col l4 s12 m12 center enter">
               <div class="row">
                 <div class="col s12">
-                  <a href="<%= "/campaigns/#{c.id}" %>" class="waves-effect waves-light btn grey">Entrar</a>
+                  <a href=<%= "/campaigns/#{c.id}" %> class="waves-effect waves-light btn grey">Entrar</a>
                 </div>
               </div>
             </div>

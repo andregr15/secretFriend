@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card generic-card">
   <div class="card-content">
     <div class="row home">
       <div class="center">
@@ -10,7 +10,7 @@
         </h5>
 
         <%= form_tag( '/campaigns' , method: 'post') do %>
-          <%= submit_tag('Criar Agora', class: 'waves-effect waves-light btn home-button') %>
+          <button class="waves-effect waves-light btn home-button" type="submit">Criar Agora</button>
         <% end %>
       </div>
     </div>
