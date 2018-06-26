@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SecretFriend</title>
+    <title>Nosso Amigo Secreto</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag %>
   </head>
 
   <body class="body">
-    <div class="container">
-      <%= yield %>
-    </div>
+    <header>
+      <%= render "shared/navbar" %>
+    </header>
+
+    <main>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>    
   </body>
 </html>

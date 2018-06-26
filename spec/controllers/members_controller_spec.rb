@@ -13,7 +13,7 @@ RSpec.describe MembersController, type: :controller do
   end
 
   describe "POST #create" do
-    context "User exist and own the campaign" do
+    context "User is the owner of the campaign" do
       before(:each) do
         @member = attributes_for(:member, campaign_id: @campaign.id)
         post :create, params: { member: @member}
@@ -45,7 +45,7 @@ RSpec.describe MembersController, type: :controller do
       @new_member = attributes_for(:member, campaign: @campaign)
     end
 
-    context "User exists and own the campaign" do
+    context "User is the owner of the campaign" do
       before(:each) do
         member = create(:member, campaign: @campaign)
         put :update, params: { id: member.id, member: @new_member }

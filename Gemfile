@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'devise'
-gem 'materialize-sass', '~> 1.0.0.rc1'
+gem 'materialize-sass', '~> 1.0.0.rc2'
 gem 'material_icons'
 gem 'sidekiq'
 gem 'jquery-rails'
