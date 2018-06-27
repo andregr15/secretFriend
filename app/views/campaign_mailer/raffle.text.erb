@@ -1,3 +1,32 @@
-Campaign#raffle
+<center>
+<em>Nosso Amigo Secreto</em>
 
-<%= @greeting %>, find me in app/views/campaign_mailer/raffle.text.erb
+<b><%= @campaign.title %></b>
+
+<%= (@campaign.event_date)? "#{@campaign.event_date.strftime("%d/%m/%y")} - " : '' %><%= @campaign.location %>
+
+<%= @campaign.description %>
+
+<hr/>
+
+Olá <%= @member.name %>, o <%= @campaign.user.name %> criou uma campanha de amigo secreto no site Nosso Amigo Secreto e incluiu você.
+Logo a baixo voce pode saber com querm saiu.
+
+<b>Seu amigo secreto é: <em><%= @friend.name %></em></b>
+
+Crie sua campanha também em http://onebitcode.com
+
+<hr/>
+
+Se conecte com a gente
+
+Facebook: <em>https://www.facebook.com/onebitcode/</em>
+Twitter: <em>https://twitter.com/onebitcode</em>
+
+<hr/>
+
+Um Projeto do Bootcamp OneBitCode
+
+<img src='<%= "#{ActionMailer::Base.default_url_options[:host]}/members/#{@member.token}/opened" %>' width="1" height="1">
+
+</center>

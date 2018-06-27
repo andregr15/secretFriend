@@ -9,6 +9,10 @@ gem 'material_icons'
 gem 'sidekiq'
 gem 'jquery-rails'
 
+gem 'inky-rb', require: 'inky'
+# Stylesheet inlining for email **
+gem 'premailer-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use postgresql as the database for Active Record
