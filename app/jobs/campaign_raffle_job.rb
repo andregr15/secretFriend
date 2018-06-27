@@ -7,7 +7,7 @@ class CampaignRaffleJob < ApplicationJob
     campaign.members.each { |m| m.set_pixel }
     
     results.each do |r|
-      CampaignMailer.raffle(campaign, r.first, r.last).delivery_now
+      CampaignMailer.raffle(campaign, r.first, r.last).deliver_now
     end
 
     campaign.update(status: :finished)
