@@ -8,44 +8,39 @@
           <%= devise_error_messages! %>
 
           <div class="input-field">
-            <%= f.label :name %><br />
+            <%= f.label :name %>
             <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
           </div>
 
           <div class="input-field">
-            <%= f.label :email %><br />
+            <%= f.label :email %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
           </div>
 
           <div class="input-field">
             <%= f.label :password %>
-            <br />
             <%= f.password_field :password, autocomplete: "off" %>
-            <br />
             <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <br />
             <% end %>
           </div>
 
           <div class="input-field">
-            <%= f.label :password_confirmation %><br />
+            <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, autocomplete: "off" %>
           </div>
 
-        <div class="row">
           <div class="actions">
             <button class="btn waves-effect waves-ligth" type="submit" name="actions">
               Sign Up
               <i class="material-icons right">send</i>
             </button>
           </div>
-        </div>
-        
         <% end %>
-
-        <div class="row">
-          <%= render "devise/shared/links" %>
-        </div>
+      </div>
+      <div class="row">
+        <%= render "devise/shared/links" %>
       </div>
     </div>
   </div>

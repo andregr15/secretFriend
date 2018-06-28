@@ -83,5 +83,3 @@ test:
 production:
   <<: *default
   database: SecretFriend_production
-  username: SecretFriend
-  password: <%= ENV['SECRETFRIEND_DATABASE_PASSWORD'] %>
