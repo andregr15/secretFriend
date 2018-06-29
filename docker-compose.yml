@@ -23,8 +23,7 @@ services:
       command: bash start_jobs.sh
       volumes:
         - '.:/app'
-      volumes_from:
-        - box
+        - 'box/:/box'
 
     app:
         depends_on:
@@ -36,13 +35,7 @@ services:
           - '3000:3000'
         volumes:
           - '.:/app'
-        volumes_from:
-          - box
-
-    box:
-      image: busybox
-      volumes:
-        - '/box'
+          - 'box/:/box'
 
     mailcatcher:
       image: yappabe/mailcatcher
