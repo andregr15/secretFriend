@@ -35,7 +35,7 @@ class CampaignsController < ApplicationController
 
   def destroy
     @campaign.destroy
-    
+
     respond_to do |format|
       format.json { render json: true }
     end
@@ -43,7 +43,7 @@ class CampaignsController < ApplicationController
 
   def raffle
     respond_to do |format|
-      if @campaign.status != "pending"
+      if @campaign.status != 'pending'
         format.json { render json: 'Já foi sorteada', status: :unprocessable_entity }
       elsif @campaign.members.count < 3
         format.json { render json: 'A campanha precisa pelo menos 3 pessoas', status: :unprocessable_entity }

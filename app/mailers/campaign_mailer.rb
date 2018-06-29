@@ -1,5 +1,4 @@
 class CampaignMailer < ApplicationMailer
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -10,5 +9,11 @@ class CampaignMailer < ApplicationMailer
     @member = member
     @friend = friend
     mail to: @member.email, subject: "Nosso Amigo Secreto: #{@campaign.title}"
+  end
+
+  def error(campaign)
+    @campaign = campaign
+    mail to: @campaign.user.email,
+         subject: "Nosso Amigo Secreto: erro na campanha #{@campaign.title}"
   end
 end

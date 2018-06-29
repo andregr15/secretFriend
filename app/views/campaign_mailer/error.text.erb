@@ -1,0 +1,26 @@
+<center>
+<em>Nosso Amigo Secreto</em>
+
+<b><%= @campaign.title %></b>
+
+<%= (@campaign.event_date)? "#{@campaign.event_date.strftime("%d/%m/%y")} - " : '' %><%= @campaign.location %>
+
+<%= @campaign.description %>
+
+<hr/>
+
+Olá <%= @campaign.user.name %>, houve um erro ao processar a campanha, para maiores informações, por favor acesse sua campanha em nosso site.
+<a href='<%= "#{ActionMailer::Base.default_url_options[:host]}/campaigns/#{@campaign.id}" %>'>Clique aqui para acessar a sua campanha</a>
+
+<hr/>
+
+Se conecte com a gente
+
+Facebook: <em>https://www.facebook.com/onebitcode/</em>
+Twitter: <em>https://twitter.com/onebitcode</em>
+
+<hr/>
+
+Um Projeto do Bootcamp OneBitCode
+
+</center>
