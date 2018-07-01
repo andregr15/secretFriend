@@ -53,9 +53,8 @@
           <div class="member_list">
             <input type="hidden" id="campaign_id" value="<%= @campaign.id %>">
             <% @campaign.members.each do |m| %>
-              <%= form_for m, method: :put, html: { class: 'member' } do %>
-                <!--<div class="member" id="member_<%= m.id %>"> -->
-                
+              <%= form_for m, method: :put, html: { class: 'member_edit' } do %>
+                <div class="member" id="member_<%= m.id %>"> 
                   <div class="row">
                     <div class="col s12 m5 input-field">
                       <input id="name_<%= m.id %>" type="text" class="validate" value="<%= m.name %>">
@@ -74,7 +73,7 @@
                       </a>
                     </div>
                   </div>
-                <!--</div>-->
+                </div>
               <% end %>
             <% end %>
           </div>
@@ -105,7 +104,7 @@
       <div class="col s6 m3 offset-m3 l2 offset-l4">
         <%= form_for @campaign, method: 'delete', html: {class: 'remove_campaign', id: 'delete_form'} do |f| %>
           <!--<button type='submit' class="waves-effect waves-light btn grey">Remover</button>-->
-          <a href="#delete-confirmation" class="waves-effect waves-light btn modal-trigger grey">Remover</a>
+          <button type='button' class="waves-effect waves-light btn grey modal-trigger" data-target="delete-confirmation">Remover</button>
         <% end %>
       </div>
 
@@ -125,10 +124,10 @@
       <h4>Confirmação</h4>
       <div class="row"> 
         <div class="col s1">
-          <i class="material-icons md-48 icon red-icon">warning</i>
+          <i class="material-icons md-48 red-icon">warning</i>
         </div>
         <div class="col s11">
-          <p>Tem certeza de deseja remover a campanha: <b><em><%= @campaign.title %>?<b/></em></p>
+          <p>Tem certeza de deseja remover a campanha: <b><em><%= @campaign.title %>?</b></em></p>
         </div>
       </div>
       <div class="modal-footer">
@@ -138,4 +137,5 @@
     </div>
   </div>
 
+  </div>
 </div>

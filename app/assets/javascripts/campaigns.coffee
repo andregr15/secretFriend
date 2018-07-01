@@ -1,6 +1,7 @@
 $(document).on 'turbolinks:load', ->
+  Materialize.Modal._count = 0
   $('.modal').modal()
-  
+
   $('.update_campaign input').bind 'blur', ->
     $('.update_campaign').submit()
 

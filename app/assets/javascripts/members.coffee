@@ -33,12 +33,12 @@ $(document).on 'turbolinks:load', ->
           Materialize.toast('Problema na hora de incluir membro', 4000, 'red')
     return false
 
-  $('.member input').bind 'blur', (e) ->
+  $('.member_edit input').bind 'blur', (e) ->
     member_id = e.currentTarget.form.id.substring(12)
     if valid_email($( "#email_" + member_id ).val()) && $( "#name_" + member_id ).val() != ""
       $('#'+ e.currentTarget.form.id).submit()
 
-  $('.member').on 'submit', (e) ->
+  $('.member_edit').on 'submit', (e) ->
     member_id = e.currentTarget.id.substring(12)
     $.ajax e.target.action,
       type: 'PUT'
