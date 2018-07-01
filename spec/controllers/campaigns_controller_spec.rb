@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActiveJob::TestHelper
 
 RSpec.describe CampaignsController, type: :controller do
   include Devise::Test::ControllerHelpers
@@ -17,14 +18,14 @@ RSpec.describe CampaignsController, type: :controller do
   end
 
   describe "GET #show" do
-    
+
     context "campaign exists" do
-      
+
       context "User is the owner of the campaign" do
         it "Returns success" do
           campaign = create(:campaign, user: @current_user)
           get :show, params: { id: campaign.id }
-          
+
           expect(response).to have_http_status(:success)
         end
       end
@@ -33,7 +34,7 @@ RSpec.describe CampaignsController, type: :controller do
         it "Redirects to root" do
           campaign = create(:campaign)
           get :show, params: { id: campaign.id }
-          
+
           expect(response).to redirect_to('/')
         end
       end
@@ -147,9 +148,9 @@ RSpec.describe CampaignsController, type: :controller do
 
       context "Has more than two members" do
         before(:each) do
-          create(:member, campaign: @campaign)
-          create(:member, campaign: @campaign)
-          create(:member, campaign: @campaign)
+          @member1 = create(:member, campaign: @campaign)
+          @member2 = create(:member, campaign: @campaign)
+          @member3 = create(:member, campaign: @campaign)
           post :raffle, params: { id: @campaign.id }
         end
 
@@ -157,6 +158,32 @@ RSpec.describe CampaignsController, type: :controller do
           expect(response).to have_http_status(:success)
         end
 
+        it 'job is created' do
+          ActiveJob::Base.queue_adapter = :test
+            expect{
+              CampaignRaffleJob.perform_later @campaign
+            }.to have_enqueued_job.on_queue('emails')
+        end
+
+        it 'should have sended the e-mails' do
+          expect {
+            perform_enqueued_jobs do
+              CampaignRaffleJob.perform_later @campaign
+            end
+          }.to change { ActionMailer::Base.deliveries.size }.by(4)
+        end
+
+        it 'should have sended the e-mails to the right members' do
+          perform_enqueued_jobs do
+            CampaignRaffleJob.perform_later @campaign
+          end
+
+          mails = ActionMailer::Base.deliveries
+          expect(mails.any? { |m| m.to[0] == @current_user.email }).to be true
+          expect(mails.any? { |m| m.to[0] == @member1.email }).to be true
+          expect(mails.any? { |m| m.to[0] == @member2.email }).to be true
+          expect(mails.any? { |m| m.to[0] == @member3.email }).to be true
+        end
       end
 
       context "No more than two members" do
