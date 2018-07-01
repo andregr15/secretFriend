@@ -1,7 +1,7 @@
 class Campaign < ApplicationRecord
   after_validation :set_member, on: :create
   before_validation :set_status, on: :create
-  
+
   belongs_to :user
   has_many :members, dependent: :destroy
   enum status: [:pending, :finished]

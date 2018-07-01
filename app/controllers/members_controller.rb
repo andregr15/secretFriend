@@ -1,11 +1,11 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!, execpt: [:opened]
-  
+
   before_action :set_member, only: [:show, :destroy, :update]
   before_action :is_owner?, only: [:destroy, :update]
   before_action :set_member_by_token, only: [:opened]
   before_action :is_owner_by_params?, only: [:create]
-  
+
   def create
     @member = Member.new(member_params)
     respond_to do |format|
@@ -19,7 +19,7 @@ class MembersController < ApplicationController
 
   def destroy
     @member.destroy
-    respond_to do |format| 
+    respond_to do |format|
       format.json { render json: true }
     end
   end

@@ -72,19 +72,19 @@ RSpec.describe MembersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    
+
     context "User is the owner of the campaign" do
       before(:each) do
         @member = create(:member, campaign: @campaign)
         delete :destroy, params: { id: @member.id }
       end
-      
+
       it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
       it "database shouldn't have member anymore" do
-        expect{Member.find(@member.id)}.to raise_exception(ActiveRecord::RecordNotFound)
+        expect{ Member.find(@member.id) }.to raise_exception(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -96,5 +96,4 @@ RSpec.describe MembersController, type: :controller do
       end
     end
   end
-
 end
