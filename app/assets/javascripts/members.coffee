@@ -35,7 +35,7 @@ $(document).on 'turbolinks:load', ->
 
   $('.member input').bind 'blur', (e) ->
     member_id = e.currentTarget.form.id.substring(12)
-    if valid_email($( "#email_" + member_id).val()) && $( "#name_"+ member_id ).val() != ""
+    if valid_email($( "#email_" + member_id ).val()) && $( "#name_" + member_id ).val() != ""
       $('#'+ e.currentTarget.form.id).submit()
 
   $('.member').on 'submit', (e) ->
@@ -46,8 +46,8 @@ $(document).on 'turbolinks:load', ->
       data: {
         member: {
           campaign_id: $('#campaign_id').val(),
-          name: $('#name_' + e.currentTarget.id).val(),
-          email: $('#email_').val(),
+          name: $('#name_' + member_id).val(),
+          email: $('#email_' + member_id).val(),
         }
       }
       success: (data, text, jqXHR) ->
