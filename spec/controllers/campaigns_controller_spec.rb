@@ -18,7 +18,6 @@ RSpec.describe CampaignsController, type: :controller do
   end
 
   describe "GET #show" do
-
     context "campaign exists" do
 
       context "User is the owner of the campaign" do
