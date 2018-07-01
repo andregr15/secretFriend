@@ -97,16 +97,41 @@
 
   <div class="row btn-actions">
     <div class="col s12 center">
+      
       <div class="col s6 m3 offset-m3 l2 offset-l4">
-        <%= form_for @campaign, method: 'delete', html: {class: 'remove_campaign'} do |f| %>
-          <button type='submit' class="waves-effect waves-light btn grey">Remover</button>
+        <%= form_for @campaign, method: 'delete', html: {class: 'remove_campaign', id: 'delete_form'} do |f| %>
+          <!--<button type='submit' class="waves-effect waves-light btn grey">Remover</button>-->
+          <a href="#delete-confirmation" class="waves-effect waves-light btn modal-trigger grey">Remover</a>
         <% end %>
       </div>
+
       <div class="col s6 m3 l3">
         <%= form_tag(raffle_campaign_path(@campaign), method: 'post', class: 'raffle_campaign') do %>
           <button type='submit' class="waves-effect waves-light btn red">Sortear e enviar</button>
         <% end %>
       </div>
+
+    </div>
+
+  </div>
+
+  <!-- Delete Confirmation Modatal -->
+  <div class="modal" id="delete-confirmation">
+    <div class="modal-content">
+      <h4>Confirmação</h4>
+      <div class="row"> 
+        <div class="col s1">
+          <i class="material-icons md-48 md-red">warning</i>
+        </div>
+        <div class="col s11">
+          <p>Tem certeza de deseja remover a campanha <b><em><%= @campaign.title %>?<b/></em></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modal_yes" class="waves-effect waves-light btn red">Sim</button>
+        <button type="button" class="waves-effect waves-light btn modal-action modal-close">Não</button>
+      </div>
     </div>
   </div>
+
 </div>

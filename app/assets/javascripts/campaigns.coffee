@@ -1,4 +1,6 @@
 $(document).on 'turbolinks:load', ->
+  $('.modal').modal()
+  
   $('.update_campaign input').bind 'blur', ->
     $('.update_campaign').submit()
 
@@ -34,3 +36,7 @@ $(document).on 'turbolinks:load', ->
       error: (jqXHR, textStatus, errorThrown) -> 
         Materialize.toast(jqXHR.responseText, 4000, 'red')
     return false
+  
+  $('#modal_yes').on 'click', (e) ->
+    $('#delete-confirmation').modal('close')
+    $('#delete_form').submit()
