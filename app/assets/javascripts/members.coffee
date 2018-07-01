@@ -33,6 +33,29 @@ $(document).on 'turbolinks:load', ->
           Materialize.toast('Problema na hora de incluir membro', 4000, 'red')
     return false
 
+  $('.member input').bind 'blur', (e) ->
+    member_id = e.currentTarget.form.id.substring(12)
+    if valid_email($( "#email_" + member_id).val()) && $( "#name_"+ member_id ).val() != ""
+      $('#'+ e.currentTarget.form.id).submit()
+
+  $('.member').on 'submit', (e) ->
+    member_id = e.currentTarget.id.substring(12)
+    $.ajax e.target.action,
+      type: 'PUT'
+      dataType: 'json'
+      data: {
+        member: {
+          campaign_id: $('#campaign_id').val(),
+          name: $('#name_' + e.currentTarget.id).val(),
+          email: $('#email_').val(),
+        }
+      }
+      success: (data, text, jqXHR) ->
+        Materialize.toast('Membro atualizado', 4000, 'green')
+      error: (jqXHR, textStatus, errorThrown) ->
+        Materialize.toast(errorThrown, 4000, 'red')
+    return false
+
 
 valid_email = (email) ->
   /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email)

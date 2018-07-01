@@ -40,24 +40,3 @@ $(document).on 'turbolinks:load', ->
   $('#modal_yes').on 'click', (e) ->
     $('#delete-confirmation').modal('close')
     $('#delete_form').submit()
-
-  $('.member input').bind 'blur', (e) ->
-    $('#'+ e.currentTarget.form.id).submit()
-
-  $('.member').on 'submit', (e) ->
-    member_id = e.currentTarget.id.substring(12)
-    $.ajax e.target.action,
-      type: 'PUT'
-      dataType: 'json'
-      data: {
-        member: {
-          campaign_id: $('#campaign_id').val(),
-          name: $('#name_' + member_id).val(),
-          email: $('#email_' + member_id).val(),
-        }
-      }
-      success: (data, text, jqXHR) ->
-        Materialize.toast('Membro atualizado', 4000, 'green')
-      error: (jqXHR, textStatus, errorThrown) ->
-        Materialize.toast('Erro ao atualizar o membro ' + $('#name_' + member_id).val(), 4000, 'red')
-    return false
