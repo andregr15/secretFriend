@@ -39,14 +39,14 @@ $(document).on 'turbolinks:load', ->
       $('#'+ e.currentTarget.form.id).submit()
 
   $('.member_edit').on 'submit', (e) ->
-    e.preventDefault();
+    e.preventDefault()
     update_member(e)
     return false
 
   # submeter form adicionado dinamicamente
   # fonte: https://stackoverflow.com/questions/14832534/how-to-add-submit-event-to-dynamically-generated-form
   $(document).on 'submit', '.member_edit', (e) ->
-    e.preventDefault();
+    e.preventDefault()
     update_member(e)
     return false
 
